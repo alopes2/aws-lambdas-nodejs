@@ -17,6 +17,7 @@ provider "aws" {}
 resource "aws_lambda_function" "first_lambda" {
   function_name    = "first-lambda"
   runtime          = "nodejs22.x"
+  handler          = "index.handler"
   filename         = data.archive_file.first_lambda_file.output_path
   role             = aws_iam_role.first_lambda_role.arn
   source_code_hash = data.archive_file.first_lambda_file.output_base64sha256
