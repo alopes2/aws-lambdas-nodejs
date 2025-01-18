@@ -33,7 +33,7 @@ resource "aws_api_gateway_method" "method" {
 resource "aws_api_gateway_method_settings" "method_settings" {
   rest_api_id = aws_api_gateway_rest_api.rest_api.id
   stage_name  = aws_api_gateway_stage.stage.stage_name
-  method_path = "/${aws_api_gateway_method.method.http_method}"
+  method_path = aws_api_gateway_method.method.http_method
 
   settings {
     throttling_burst_limit = 1
