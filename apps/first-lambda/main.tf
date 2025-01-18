@@ -28,6 +28,11 @@ resource "aws_iam_role" "first_lambda_role" {
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
+resource "aws_iam_role_policy" "first_lambda_role_policies" {
+  role   = aws_iam_role.first_lambda_role.name
+  policy = data.aws_iam_policy_document.policies.json
+}
+
 data "archive_file" "first_lambda_file" {
   source_dir  = "src"
   type        = "zip"
@@ -44,5 +49,19 @@ data "aws_iam_policy_document" "assume_role" {
     }
 
     actions = ["sts:AssumeRole"]
+  }
+}
+
+data "aws_iam_policy_document" "policies" {
+  statement {
+    effect = "Allow"
+    sid    = "LogToCloudwatch"
+    actions = [
+      "logs:CreateLogGroup",
+      "logs:CreateLogStream",
+      "logs:PutLogEvents",
+    ]
+
+    resources = ["arn:aws:logs:*:*:*"]
   }
 }

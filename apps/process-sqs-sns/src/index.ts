@@ -1,6 +1,6 @@
-import type { Context } from 'aws-lambda';
+import type { Context, SNSEvent, SQSEvent } from 'aws-lambda';
 
-export const handler = async (event: any, context: Context): Promise<any> => {
+export const handler = async (event: SNSEvent | SQSEvent, context: Context) => {
   console.log('Received event ', event);
 
   return {
