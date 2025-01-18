@@ -1,19 +1,14 @@
-name: Deploy First Lambda
+name: Destroy First Lambda
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - apps/first-lambda/**/*
 
 defaults:
   run:
     working-directory: apps/first-lambda
 
 jobs:
-  deploy:
-    name: 'Deploy First Lambda'
+  destroy:
+    name: 'Destroy First Lambda'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
