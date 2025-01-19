@@ -14,7 +14,7 @@ resource "aws_lambda_event_source_mapping" "email_notification_trigger" {
   enabled          = true
 }
 
-resource "aws_lambda_permission" "apigw_lambda" {
+resource "aws_lambda_permission" "sns_permission_lambda" {
   statement_id  = "AllowExecutionFromSNS"
   action        = "lambda:InvokeFunction"
   function_name = module.sqs_sns_lambda.arn
