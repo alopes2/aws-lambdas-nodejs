@@ -14,6 +14,12 @@ resource "aws_lambda_event_source_mapping" "email_notification_trigger" {
   enabled          = true
 }
 
+resource "aws_sns_topic_subscription" "topic_subscription" {
+  topic_arn = aws_sns_topic.topic.arn
+  protocol  = "lambda"
+  endpoint  = module.sqs_sns_lambda.arn
+}
+
 resource "aws_lambda_permission" "sns_permission_lambda" {
   statement_id  = "AllowExecutionFromSNS"
   action        = "lambda:InvokeFunction"
