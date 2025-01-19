@@ -1,19 +1,19 @@
-name: Deploy Process API Lambda
+name: Deploy API Gateway Lambda
 on:
   workflow_dispatch:
   push:
     branches:
       - main
     paths:
-      - apps/process-api/**/*
+      - apps/api-gateway/**/*
 
 defaults:
   run:
-    working-directory: apps/process-api/
+    working-directory: apps/api-gateway/
 
 jobs:
   deploy:
-    name: 'Deploy Process API Lambda'
+    name: 'Deploy API Gateway Lambda'
     runs-on: ubuntu-latest
     steps:
       # Checkout the repository to the GitHub Actions runner
@@ -42,4 +42,4 @@ jobs:
         run: zip -r -j main.zip ./build
 
       - name: Update Lambda code
-        run: aws lambda update-function-code --function-name=process-api --zip-file=fileb://main.zip
+        run: aws lambda update-function-code --function-name=api-gateway --zip-file=fileb://main.zip
