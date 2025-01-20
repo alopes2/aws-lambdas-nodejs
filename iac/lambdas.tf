@@ -18,12 +18,6 @@ module "layer_usage_lambda" {
   }
 }
 
-resource "aws_lambda_layer_version" "layer" {
-  compatible_runtimes      = ["nodejs22.x"]
-  compatible_architectures = ["arm64"]
-  layer_name               = "nodejs-meetup-layer"
-}
-
 resource "aws_lambda_event_source_mapping" "email_notification_trigger" {
   event_source_arn = aws_sqs_queue.queue.arn
   function_name    = module.sqs_sns_lambda.name
