@@ -4,5 +4,6 @@
 
 mkdir -p nodejs/
 cp -r src nodejs/
-cp -r node_modules nodejs/
+cp package.json nodejs/
+npm install
 zip -r layer_content.zip nodejs
