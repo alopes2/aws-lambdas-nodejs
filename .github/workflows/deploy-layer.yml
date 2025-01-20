@@ -32,9 +32,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-central-1
 
-      - name: Install packages
-        run: npm install
-
       - name: Give file permissions
         run: chmod 744 ./build.sh
 
