@@ -16,3 +16,9 @@ variable "policies" {
   type        = list(string)
   default     = null
 }
+
+variable "layers_arn" {
+  description = "ARN lambda layers"
+  type        = list(string)
+  default     = null
+}
