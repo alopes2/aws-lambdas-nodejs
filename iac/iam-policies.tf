@@ -13,3 +13,17 @@ data "aws_iam_policy_document" "pull_message_from_sqs" {
     ]
   }
 }
+
+data "aws_iam_policy_document" "create_dynamodb" {
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "dynamodb:PutItem",
+    ]
+
+    resources = [
+      aws_dynamodb_table.nodejs_meetup.arn
+    ]
+  }
+}

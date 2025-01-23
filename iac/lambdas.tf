@@ -5,6 +5,12 @@ module "api_gateway_lambda" {
 
 module "sqs_sns_lambda" {
   source   = "./modules/lambda"
+  name     = "create-dynamodb"
+  policies = [data.aws_iam_policy_document.create_dynamodb.json]
+}
+
+module "sqs_sns_lambda" {
+  source   = "./modules/lambda"
   name     = "sqs-sns"
   policies = [data.aws_iam_policy_document.pull_message_from_sqs.json]
 }
